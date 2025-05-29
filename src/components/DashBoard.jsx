@@ -12,13 +12,13 @@ const DashBoard = () => {
   return (
     <div className='row gy-4'>
       {/* UnitCountSeven */}
-      <UnitCountSeven />
-
+      {/* <UnitCountSeven /> */}
+      <iframe title="DirectDBDashboard" width="600" height="900" src="https://app.powerbi.com/view?r=eyJrIjoiYjYxZjdiOWYtZDBhMi00YzI1LTkyODAtMDMyOGMxYmRmNzc2IiwidCI6IjYyZWU5NzYyLWI0YWMtNDEzNC1iZmU5LTdjYTZiNjE3MjRhYiIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
       {/* IncomeVsExpense */}
-      <IncomeVsExpense />
+      {/* <IncomeVsExpense /> */}
 
       {/* UsersChart */}
-      <UsersChart />
+      {/* <UsersChart /> */}
 
       {/* TopSuppliers */}
       <TopSuppliers />
@@ -27,10 +27,10 @@ const DashBoard = () => {
       <TopCustomer />
 
       {/* OverallReport */}
-      <OverallReport />
+      {/* <OverallReport /> */}
 
       {/* PurchaseAndSales */}
-      <PurchaseAndSales />
+      {/* <PurchaseAndSales /> */}
 
       {/* RecentTransactions */}
       <RecentTransactions />

@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const RecentTransactions = () => {
+  const [transactions, setTransactions] = useState([]);
+
+  useEffect(() => {
+    const fetchTransactions = async () => {
+      try {
+        const response = await axios.get(
+          "https://instagrocerrenderserver.up.railway.app/api/sale/getAllSales"
+        );
+        setTransactions(response.data.sales);
+        console.log(response.data)
+      } catch (error) {
+        console.error("Error fetching sales:", error);
+      }
+    };
+
+    fetchTransactions();
+  }, []);
   return (
     <div className='col-xxl-8'>
       <div className='card h-100'>
@@ -25,115 +43,43 @@ const RecentTransactions = () => {
             <table className='table bordered-table mb-0'>
               <thead>
                 <tr>
-                  <th scope='col'>SL</th>
-                  <th scope='col'>Date </th>
-                  <th scope='col'>Payment Type</th>
-                  <th scope='col'>Paid Amount</th>
-                  <th scope='col'>Due Amount</th>
-                  <th scope='col'>Payable Amount</th>
+                <th scope='col'>SL</th>
+                  <th scope='col'>Product ID</th>
+                  <th scope='col'>Quantity</th>
+                  <th scope='col'>Sales Amount</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <span className='text-secondary-light'>1</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>21 Jun 2024</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>Cash</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$0.00</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$150.00</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$150.00</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span className='text-secondary-light'>2</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>21 Jun 2024</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>Bank</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$570 </span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$0.00</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$570.00</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span className='text-secondary-light'>3</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>21 Jun 2024</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>PayPal</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$300.00</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$100.00</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$200.00</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span className='text-secondary-light'>4</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>21 Jun 2024</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>Cash</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$0.00</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$150.00</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$150.00</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <span className='text-secondary-light'>3</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>21 Jun 2024</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>PayPal</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$300.00</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$100.00</span>
-                  </td>
-                  <td>
-                    <span className='text-secondary-light'>$200.00</span>
-                  </td>
-                </tr>
+              {transactions.length > 0 ? (
+                  transactions.slice(0, 6).map((item, index) => (
+                    <tr key={index}>
+                      <td>
+                        <span className='text-secondary-light'>{index + 1}</span>
+                      </td>
+                      <td>
+                        <span className='text-secondary-light'>{item.product_id}</span>
+                      </td>
+                      <td>
+                        <span className='text-secondary-light'>{item.quantity}</span>
+                      </td>
+                      <td>
+                        <span className='text-secondary-light'>${item.sales_amount}</span>
+                      </td>
+                      {/* <td>
+                        <span className='text-secondary-light'>$0.00</span>
+                      </td>
+                      <td>
+                        <span className='text-secondary-light'>${item.sales_amount}</span>
+                      </td> */}
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan='6'>
+                      <span className='text-secondary-light'>No transactions available</span>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
