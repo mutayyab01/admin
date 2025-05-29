@@ -21,7 +21,7 @@ const RecentTransactions = () => {
     fetchTransactions();
   }, []);
   return (
-    <div className='col-xxl-8'>
+    <div className='col-xxl-12'>
       <div className='card h-100'>
         <div className='card-header'>
           <div className='d-flex align-items-center flex-wrap gap-2 justify-content-between'>
