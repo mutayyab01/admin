@@ -142,16 +142,6 @@ const MasterLayout = ({ children }) => {
             <span>Order</span>
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to='/Time'
-            className={(navData) => (navData.isActive ? "active-page" : "")}
-          >
-            <Icon icon='mingcute:time-fill' className='menu-icon' />
-            <span>Time</span>
-          </NavLink>
-        </li>
-
       </>
     );
   };
@@ -476,32 +466,13 @@ const MasterLayout = ({ children }) => {
                         Add User
                       </NavLink>
                     </li>
-                    <li>
-                      <NavLink
-                        to='/view-profile'
-                        className={(navData) =>
-                          navData.isActive ? "active-page" : ""
-                        }
-                      >
-                        <i className='ri-circle-fill circle-icon text-danger-main w-auto' />{" "}
-                        View Profile
-                      </NavLink>
-                    </li>
                   </ul>
                 </li>
               </>
             )}
 
             {/* Common menu items for all users */}
-            <li>
-              <NavLink
-                to='/view-profile'
-                className={(navData) => (navData.isActive ? "active-page" : "")}
-              >
-                <Icon icon='solar:user-linear' className='menu-icon' />
-                <span>My Profile</span>
-              </NavLink>
-            </li>
+            
             <li>
               <Link
                 to='/'
@@ -1117,10 +1088,10 @@ const MasterLayout = ({ children }) => {
                     <div className='py-12 px-16 radius-8 bg-primary-50 mb-16 d-flex align-items-center justify-content-between gap-2'>
                       <div>
                         <h6 className='text-lg text-primary-light fw-semibold mb-2'>
-                          Shaidul Islam
+                          {JSON.parse(localStorage.getItem('adminUser'))?.Username}
                         </h6>
                         <span className='text-secondary-light fw-medium text-sm'>
-                          Admin
+                        {JSON.parse(localStorage.getItem('adminUser'))?.Role}
                         </span>
                       </div>
                       <button type='button' className='hover-text-danger'>
@@ -1131,19 +1102,6 @@ const MasterLayout = ({ children }) => {
                       </button>
                     </div>
                     <ul className='to-top-list'>
-                      <li>
-                        <Link
-                          className='dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-primary d-flex align-items-center gap-3'
-                          to='/view-profile'
-                        >
-                          <Icon
-                            icon='solar:user-linear'
-                            className='icon text-xl'
-                          />{" "}
-                          My Profile
-                        </Link>
-                      </li>
-
                       <li>
                         <Link
                           className='dropdown-item text-black px-0 py-8 hover-bg-transparent hover-text-danger d-flex align-items-center gap-3'

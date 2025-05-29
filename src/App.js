@@ -20,7 +20,6 @@ import TypographyPage from "./pages/TypographyPage";
 import UsersGridPage from "./pages/UsersGridPage";
 import UsersListPage from "./pages/UsersListPage";
 import ViewDetailsPage from "./pages/ViewDetailsPage";
-import ViewProfilePage from "./pages/ViewProfilePage";
 import RouteScrollToTop from "./helper/RouteScrollToTop";
 import HomePageTen from "./pages/HomePageTen";
 import AccessDeniedPage from "./pages/AccessDeniedPage";
@@ -49,7 +48,6 @@ import Warehouse from "./pages/Warehouse/Warehouse";
 import AddWarehouse from "./pages/Warehouse/AddWarehouse";
 import ViewWarehouse from "./pages/Warehouse/ViewWarehouse";
 import EditWarehouse from "./pages/Warehouse/EditWarehouse";
-import Time from "./pages/Time/Time";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Order from "./pages/Order/Order";
@@ -150,13 +148,6 @@ function App() {
           <Route exact path='/EditOrder/:id' element={
             <ProtectedRoute allowedRoles={['merchant']}>
               <EditOrder />
-            </ProtectedRoute>
-          } />
-
-          {/* Time Route */}
-          <Route exact path='/Time' element={
-            <ProtectedRoute allowedRoles={['merchant']}>
-              <Time />
             </ProtectedRoute>
           } />
 
@@ -333,11 +324,6 @@ function App() {
           <Route exact path='/view-details' element={
             <ProtectedRoute allowedRoles={['admin']}>
               <ViewDetailsPage />
-            </ProtectedRoute>
-          } />
-          <Route exact path='/view-profile' element={
-            <ProtectedRoute allowedRoles={[]}>
-              <ViewProfilePage />
             </ProtectedRoute>
           } />
 
