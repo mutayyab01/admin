@@ -20,7 +20,11 @@ const SignInLayer = () => {
   // Check if user is already authenticated
   useEffect(() => {
     if (!authLoading && isAuthenticated()) {
-      navigate('/dashboard');
+      if (JSON.parse(localStorage.getItem('adminUser'))?.Role=='merchant') {
+        navigate('/products');
+      } else {
+        navigate('/dashboard');
+      }
     }
   }, [authLoading, navigate]);
 
@@ -56,8 +60,8 @@ const SignInLayer = () => {
     setLoading(true);
 
     try {
-      const result = await login(formData.username, formData.password,formData.userType);
-      
+      const result = await login(formData.username, formData.password, formData.userType);
+
       if (result.success) {
         if (formData.rememberMe) {
           localStorage.setItem('adminCredentials', JSON.stringify({
@@ -66,7 +70,11 @@ const SignInLayer = () => {
         } else {
           localStorage.removeItem('adminCredentials');
         }
-        navigate('/dashboard');
+        if (formData.userType == 'merchant') {
+          navigate('/products');
+        } else {
+          navigate('/dashboard');
+        }
       } else {
         setError(result.message || 'Invalid username or password. Please try again.');
       }
@@ -128,7 +136,7 @@ const SignInLayer = () => {
                   }}
                 >
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M5 8L10 13L15 8" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M5 8L10 13L15 8" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
               </div>

@@ -68,7 +68,7 @@ function App() {
 
           {/* Protected Routes */}
           <Route exact path='/dashboard' element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRoles={['admin']}>
               <HomePageTen />
             </ProtectedRoute>
           } />

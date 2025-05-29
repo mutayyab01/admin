@@ -188,18 +188,20 @@ const MasterLayout = ({ children }) => {
           <ul className='sidebar-menu' id='sidebar-menu'>
             <li className='sidebar-menu-group-title'>Home</li>
             <li>
-              <NavLink
-                to='/dashboard'
-                className={(navData) =>
-                  navData.isActive ? "active-page" : ""
-                }
-              >
-                <Icon
-                  icon='solar:home-smile-angle-outline'
-                  className='menu-icon'
-                />
-                Dashboard
-              </NavLink>
+              {user?.Role === 'admin' && (
+                <NavLink
+                  to='/dashboard'
+                  className={(navData) =>
+                    navData.isActive ? "active-page" : ""
+                  }
+                >
+                  <Icon
+                    icon='solar:home-smile-angle-outline'
+                    className='menu-icon'
+                  />
+                  Dashboard
+                </NavLink>
+              )}
             </li>
 
             {/* Render merchant menu items */}
